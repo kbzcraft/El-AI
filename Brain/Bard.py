@@ -25,7 +25,8 @@ sleep(1)
 
 # Your provided list of cookie objects
 data = pyperclip.paste() 
-print(data)
+if data is not None:
+    print('Cookie Extraction sucessfull \n')
 
 # Parse the clipboard content as JSON
 try:
