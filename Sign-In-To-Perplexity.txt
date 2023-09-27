@@ -1,0 +1,386 @@
+Delivered-To: khagendrabhr@gmail.com
+Received: by 2002:ac8:6750:0:b0:403:f06a:2a9a with SMTP id n16csp3281165qtp;
+        Wed, 20 Sep 2023 02:05:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGekZMfFeJskYqg4XXld6xXCK6vDgUxSoikZNoEkxs8aHBZcjdQBJmn9ncoqugxLqo3VOD8
+X-Received: by 2002:ac8:5803:0:b0:403:f389:5793 with SMTP id g3-20020ac85803000000b00403f3895793mr2516669qtg.32.1695200739839;
+        Wed, 20 Sep 2023 02:05:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1695200739; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XRf9nQ9QiWm2sr8vP1N/1K9dVxBBU1q67qyAVnLUCOK/XY6Sr0i7afHSOYnEliGXpk
+         tta7/KcaAmrE4UlMhpIW/bkS1smZBWm+599rKZceFDqfxC1FGdrTVlxi7WxZEaPP063y
+         X1BIALWjclfEj/HgzMWpX5nqG0pxEzb2TCOASqPOjhnNE1avqTLTbxbTpZ0sziBqWI7p
+         6phDxISHUf5eFIx996r5B/GtHjq2+dWDmkoDTKtaAktTX4vHIpkTp+5SzkLhNgcfUFwD
+         1eY+BITCAXZFMChNq6EorbjwFPGnhoTpGKu391VX2DPHWwQdu/AsZd1Opa8DzGkJMGzS
+         HypQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:mime-version:from:date:dkim-signature
+         :dkim-signature;
+        bh=pHd27FLGp7WBUQ5yublQ9Cw1PrGJr1EJN2J0/Fg/8DI=;
+        fh=X5SIxgeFi6VUGhff1YYorQprxR6+EMRYcf5eOxEPvUs=;
+        b=A441bkpCbdABWFfrGi0vb7y+bIRljHrn9+UTmcFgtzXJkDlyMfWxPL+IWFCQHjmMn2
+         +yp3pgDkQSVoIpP5d9IZtyXNtFTBuCBEDCKX7wPfEt9bkTZ5UxxqscgLLPBLh3VO/lul
+         /j5WstuXG9dAehB+Ivnx5oRtEGl6L62SVETOyPCBSqxbdd4T8whqQBOkzZSnCE+Betu9
+         RRvlsYeFnGwPZ0Gnm2ZqGPX7JtuMKomv40452wkIyKAz9WlfJDIaazt+7PnYDSatWiEj
+         izLsNukW6sSwFcqv8XXu3gjI4kYCNvb/S8FkHr6cxDjV4YWwEOqzmbSjLgJs8n3ePwls
+         MxpQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@perplexity.ai header.s=s1 header.b=NBjgaPWB;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=gLB5+Ox6;
+       spf=pass (google.com: domain of bounces+32764235-c32e-khagendrabhr=gmail.com@em3814.perplexity.ai designates 159.183.121.239 as permitted sender) smtp.mailfrom="bounces+32764235-c32e-khagendrabhr=gmail.com@em3814.perplexity.ai";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=perplexity.ai
+Return-Path: <bounces+32764235-c32e-khagendrabhr=gmail.com@em3814.perplexity.ai>
+Received: from wfbttwzf.outbound-mail.sendgrid.net (wfbttwzf.outbound-mail.sendgrid.net. [159.183.121.239])
+        by mx.google.com with ESMTPS id n18-20020a05622a041200b004055a1d7c1dsi1924501qtx.187.2023.09.20.02.05.39
+        for <khagendrabhr@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Sep 2023 02:05:39 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+32764235-c32e-khagendrabhr=gmail.com@em3814.perplexity.ai designates 159.183.121.239 as permitted sender) client-ip=159.183.121.239;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@perplexity.ai header.s=s1 header.b=NBjgaPWB;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=gLB5+Ox6;
+       spf=pass (google.com: domain of bounces+32764235-c32e-khagendrabhr=gmail.com@em3814.perplexity.ai designates 159.183.121.239 as permitted sender) smtp.mailfrom="bounces+32764235-c32e-khagendrabhr=gmail.com@em3814.perplexity.ai";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=perplexity.ai
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=perplexity.ai;
+	h=content-type:from:mime-version:subject:x-feedback-id:to:cc:
+	content-type:from:subject:to;
+	s=s1; bh=pHd27FLGp7WBUQ5yublQ9Cw1PrGJr1EJN2J0/Fg/8DI=;
+	b=NBjgaPWB1Jys4ZQjlToWzm6HdXpVOsOc8n66QXd7XcS9qQqP6MzpnBYeVQs0bggTjYzz
+	1NCil0Y3NsRyhfokMhSZvsOvO4rj3AkMuTigy9BMVRK2hU4rRqXCHW9ZLtTxrUucMfwlN4
+	4yPFTK9u+4iok66rCopgefAiY4Tbohz6bEamHbt/QLUPk0leS9uJcITCN0lFa3rT/yjHHo
+	W7wacvheo9CmPb8uJBZxnTyraRzM0VPtLEnsjl6/Xizoi6SU1wOp8Rcvzp/FKYSfqAKWa+
+	c/PuEBo/CeXX24XOEmigZfRCHeUQu/nJvzHcicEO0yqQGLegQAcpNVkdCcjj/e1g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:x-feedback-id:to:cc:
+	content-type:from:subject:to;
+	s=smtpapi; bh=pHd27FLGp7WBUQ5yublQ9Cw1PrGJr1EJN2J0/Fg/8DI=;
+	b=gLB5+Ox6tP80AYad+HRXThGppQVGFvdCIOWn3KxuLWEysbYPGLB7fpUXsIcwXWL3pYvc
+	m1ZoXq6J1d0WDieNoc9GoG2U28SIR+Or3zEHP5tEiS0GnQukfuXd8rJCzTQEAg/Rm8cjCc
+	WSuLKCEcNlpbl8TJQd7Gw10tjBx/ix1wc=
+Received: by filterdrecv-c4b67f958-l54br with SMTP id filterdrecv-c4b67f958-l54br-1-650AB5E3-23
+        2023-09-20 09:05:39.49025011 +0000 UTC m=+11438749.538293601
+Received: from MzI3NjQyMzU (unknown)
+	by geopod-ismtpd-21 (SG) with HTTP
+	id YvPzkRwGQ-Cs4AVFdxu3ag
+	Wed, 20 Sep 2023 09:05:39.396 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=554b9dbba07d6581248001847329393db8d95e066bb36c578151377cdefe
+Date: Wed, 20 Sep 2023 09:05:39 +0000 (UTC)
+From: Perplexity AI <helpdesk@perplexity.ai>
+Mime-Version: 1.0
+Message-ID: <YvPzkRwGQ-Cs4AVFdxu3ag@geopod-ismtpd-21>
+Subject: Sign In To Perplexity
+X-Feedback-ID: 32764235:SG
+X-SG-EID: 
+ =?us-ascii?Q?RiJil3RON9gUNksUr9bKXGzO1JLgGCZ5fremHbawn8sF6=2FffyumSXb23CG5jTF?=
+ =?us-ascii?Q?kfz5kBANgN4JREciq6BM1IliuPYKY6mITXBFnsb?=
+ =?us-ascii?Q?=2FOiVjWRSefhbgLIES0zUJPeMtUUMxebvh9Uxcez?=
+ =?us-ascii?Q?EA6qbGU4PjRGR1AM5kJkllOUCyPsnix=2FQKiLT9r?=
+ =?us-ascii?Q?47gWyUdR1DiGH3gmqCPGGQNasOJYA=2FQf3IjsU7K?=
+ =?us-ascii?Q?0wz8IewvOtdM2cLeGjuCDNi9arWs7ByKObjVko?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb=2FAGoT6esUdjn1xlwZTxFX4x0m8ourgTs3FmsBE8kg?=
+ =?us-ascii?Q?SKbCE1kE6tFBR=2FB932NKDMHoJN7dKUJWunT3nRB?=
+ =?us-ascii?Q?zH1uA9gCJzHAYvCtXNaN5KYT9F5i1EanxJON0kC?=
+ =?us-ascii?Q?B0R95ElR+qnkkzne3v11WujnnUHIgcg=3D?=
+To: khagendrabhr@gmail.com
+X-Entity-ID: 1n/EF7zLfmz9Hp1C6p61cg==
+
+--554b9dbba07d6581248001847329393db8d95e066bb36c578151377cdefe
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0
+
+( https://perplexity.ai )
+
+*Sign in to your account*
+
+Sign in ( https://www.perplexity.ai/api/auth/callback/email?callbackUrl=3Dh=
+ttps%3A%2F%2Fwww.perplexity.ai%2Fapi%2Fauth%2Fsignin-callback%3Fredirect%3D=
+https%253A%252F%252Fwww.perplexity.ai%252F&token=3D1bdb771c04e9f9717f1b8a0f=
+8d2b1f0184282e55bd8e0428c0fb815b627053ba&email=3Dkhagendrabhr%40gmail.com )
+
+If you did not request this, you can safely ignore it. For any issues, plea=
+se contact support@perplexity.ai ( support@perplexity.ai?subject=3D&body=3D=
+ )
+--554b9dbba07d6581248001847329393db8d95e066bb36c578151377cdefe
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=us-ascii
+Mime-Version: 1.0
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html data-editor-version=3D"2" class=3D"sg-campaigns" xmlns=3D"http://www.=
+w3.org/1999/xhtml">
+    <head>
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+      <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scal=
+e=3D1, minimum-scale=3D1, maximum-scale=3D1">
+      <!--[if !mso]><!-->
+      <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3DEdge">
+      <!--<![endif]-->
+      <!--[if (gte mso 9)|(IE)]>
+      <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+      </xml>
+      <![endif]-->
+      <!--[if (gte mso 9)|(IE)]>
+  <style type=3D"text/css">
+    body {width: 600px;margin: 0 auto;}
+    table {border-collapse: collapse;}
+    table, td {mso-table-lspace: 0pt;mso-table-rspace: 0pt;}
+    img {-ms-interpolation-mode: bicubic;}
+  </style>
+<![endif]-->
+      <style type=3D"text/css">
+    body, p, div {
+      font-family: arial,helvetica,sans-serif;
+      font-size: 16px;
+    }
+    body {
+      color: #1F1F1F;
+    }
+    body a {
+      color: #FCFCF9;
+      text-decoration: none;
+    }
+    p { margin: 0; padding: 0; }
+    table.wrapper {
+      width:100% !important;
+      table-layout: fixed;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    img.max-width {
+      max-width: 100% !important;
+    }
+    .column.of-2 {
+      width: 50%;
+    }
+    .column.of-3 {
+      width: 33.333%;
+    }
+    .column.of-4 {
+      width: 25%;
+    }
+    ul ul ul ul  {
+      list-style-type: disc !important;
+    }
+    ol ol {
+      list-style-type: lower-roman !important;
+    }
+    ol ol ol {
+      list-style-type: lower-latin !important;
+    }
+    ol ol ol ol {
+      list-style-type: decimal !important;
+    }
+    @media screen and (max-width:480px) {
+      .preheader .rightColumnContent,
+      .footer .rightColumnContent {
+        text-align: left !important;
+      }
+      .preheader .rightColumnContent div,
+      .preheader .rightColumnContent span,
+      .footer .rightColumnContent div,
+      .footer .rightColumnContent span {
+        text-align: left !important;
+      }
+      .preheader .rightColumnContent,
+      .preheader .leftColumnContent {
+        font-size: 80% !important;
+        padding: 5px 0;
+      }
+      table.wrapper-mobile {
+        width: 100% !important;
+        table-layout: fixed;
+      }
+      img.max-width {
+        height: auto !important;
+        max-width: 100% !important;
+      }
+      a.bulletproof-button {
+        display: block !important;
+        width: auto !important;
+        font-size: 80%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .columns {
+        width: 100% !important;
+      }
+      .column {
+        display: block !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .social-icon-column {
+        display: inline-block !important;
+      }
+    }
+  </style>
+      <!--user entered Head Start--><!--End Head user entered-->
+    </head>
+    <body>
+      <center class=3D"wrapper" data-link-color=3D"#FCFCF9" data-body-style=
+=3D"font-size:16px; font-family:arial,helvetica,sans-serif; color:#1F1F1F; =
+background-color:#FCFCF9;">
+        <div class=3D"webkit">
+          <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"=
+100%" class=3D"wrapper" bgcolor=3D"#FCFCF9">
+            <tr>
+              <td valign=3D"top" bgcolor=3D"#FCFCF9" width=3D"100%">
+                <table width=3D"100%" role=3D"content-container" class=3D"o=
+uter" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+                  <tr>
+                    <td width=3D"100%">
+                      <table width=3D"100%" cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0">
+                        <tr>
+                          <td>
+                            <!--[if mso]>
+    <center>
+    <table><tr><td width=3D"600">
+  <![endif]-->
+                                    <table width=3D"100%" cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" style=3D"width:100%; max-width:600px;" alig=
+n=3D"center">
+                                      <tr>
+                                        <td role=3D"modules-container" styl=
+e=3D"padding:0px 0px 0px 0px; color:#1F1F1F; text-align:left;" bgcolor=3D"#=
+FCFCF9" width=3D"100%" align=3D"left"><table class=3D"module preheader preh=
+eader-hide" role=3D"module" data-type=3D"preheader" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"display: none !important;=
+ mso-hide: all; visibility: hidden; opacity: 0; color: transparent; height:=
+ 0; width: 0;">
+    <tr>
+      <td role=3D"module-content">
+        <p></p>
+      </td>
+    </tr>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"3be8171a-283c-461a-bd7d-779b6fa62902">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://perplexity.ai"><img class=3D"max-width" border=
+=3D"0" style=3D"display:block; color:#000000; text-decoration:none; font-fa=
+mily:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !importan=
+t; width:100%; height:auto !important;" width=3D"600" alt=3D"" data-proport=
+ionally-constrained=3D"true" data-responsive=3D"true" src=3D"http://cdn.mca=
+uto-images-production.sendgrid.net/70660c444ad3eaa9/bfa982a7-0202-49cc-ae38=
+-ea00ef1965e6/1200x254.png"></a></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"7177772a-f430-4e3d-80be-ff5e532506f9" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:18px 0px 18px 0px; line-height:22px; text-alig=
+n:inherit; background-color:#FCFCF9;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FCFCF9" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: center"><span style=3D"font-size: 24px"><strong>Sign in to =
+your account</strong></span></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"2ce88742-9f01-4460-=
+9423-b63e8e72182a">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#20808D" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;"><a href=3D"https://www.perplexity.ai/api/auth/callback/emai=
+l?callbackUrl=3Dhttps%3A%2F%2Fwww.perplexity.ai%2Fapi%2Fauth%2Fsignin-callb=
+ack%3Fredirect%3Dhttps%253A%252F%252Fwww.perplexity.ai%252F&token=3D1bdb771=
+c04e9f9717f1b8a0f8d2b1f0184282e55bd8e0428c0fb815b627053ba&email=3Dkhagendra=
+bhr%40gmail.com" style=3D"background-color:#20808D; border:0px solid #33333=
+3; border-color:#333333; border-radius:32px; border-width:0px; display:inli=
+ne-block; font-size:18px; font-weight:400; letter-spacing:0px; line-height:=
+normal; padding:12px 18px 12px 18px; text-align:center; text-decoration:non=
+e; border-style:solid; font-family:helvetica,sans-serif; color:#FFFFFF;" ta=
+rget=3D"_blank">Sign in</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"tabl=
+e-layout: fixed;" data-muid=3D"56948614-a6cf-4fa1-a535-020a7ea1c5c6">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 30px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"f73ce0a5-b2ca-495e-9fe5-725d31b17572" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:18px 0px 18px 0px; line-height:22px; text-alig=
+n:inherit; background-color:#FCFCF9;" height=3D"100%" valign=3D"top" bgcolo=
+r=3D"#FCFCF9" role=3D"module-content"><div><div style=3D"font-family: inher=
+it; text-align: center"><span style=3D"color: #6e6e76">If you did not reque=
+st this, you can safely ignore it. For any issues, please contact </span><a=
+ href=3D"mailto:support@perplexity.ai?subject=3D&amp;body=3D"><span style=
+=3D"color: #6e6e76"><u>support@perplexity.ai</u></span></a></div><div></div=
+></div></td>
+      </tr>
+    </tbody>
+  </table></td>
+                                      </tr>
+                                    </table>
+                                    <!--[if mso]>
+                                  </td>
+                                </tr>
+                              </table>
+                            </center>
+                            <![endif]-->
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </center>
+    <img src=3D"https://url5023.perplexity.ai/wf/open?upn=3Di4mZ9vQb8SlFTJ2=
+hp4kRblgY0nMVQzpqJiEMuVZGuW05V1Lt30Cf6UePBewvHkTgStll7XyschKg2fboeRZBRjUuXw=
+xoUUpSFgwTvC9qd5aN9qKIrUE8BimMTa1Skjb1zJb21qZE1vRIiAv2-2B3r3BMq-2FnM4-2F1V-=
+2Bg2zCv4hiWMmKYh691No4F7vfe0jdFX8LXqRmHBehE3JX-2BmFYLpKBVksmQb7Cfx3J62bKiQW=
+H6Thw3L3WhmJ0wmCh8BrsiUc-2Fmr1xF-2BBNxe2rwilNW6utIU2VSRAi2u1ES5-2BlES15yNnq=
+WFkvvjif-2Bv9q7BZBLKvPM4XoPOhr7DW2TSUEF6FVmOodV0dQwLzaqf1BVRcy6wy6RlguNuZ9i=
+7xtGv5grZ8i3" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"heigh=
+t:1px !important;width:1px !important;border-width:0 !important;margin-top:=
+0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-le=
+ft:0 !important;padding-top:0 !important;padding-bottom:0 !important;paddin=
+g-right:0 !important;padding-left:0 !important;"/></body>
+  </html>
+--554b9dbba07d6581248001847329393db8d95e066bb36c578151377cdefe--

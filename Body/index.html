@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeechR</title>
+</head>
+<body>
+    <p id="txt" class="output"></p>
+    <button id="start">Start</button>
+    <button id="clear">Clear</button>
+<script>
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+const SpeechGrammarList =
+  window.SpeechGrammarList || window.webkitSpeechGrammarList;
+const SpeechRecognitionEvent =
+  window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+
+const recognition = new SpeechRecognition();
+const speechRecognitionList = new SpeechGrammarList();
+
+
+recognition.grammars = speechRecognitionList;
+recognition.continuous = true;
+recognition.lang = "en-US";
+recognition.interimResults = false; //make it true to fast fast live transition
+recognition.maxAlternatives = 1;
+
+const diagnostic = document.querySelector(".output");
+const startBtn = document.querySelector("#start")
+const clearBtn = document.querySelector('#clear')
+
+
+window.addEventListener('load',()=>{
+    recognition.start()
+})
+startBtn.addEventListener('click', () => {
+    recognition.start();
+});
+
+
+recognition.onresult = (event) => {
+  const text = event.results[event.results.length-1][0].transcript;
+  diagnostic.textContent = text;
+  isClearAvailable = true
+};
+
+recognition.onspeechend = () => {
+    console.log("Speech has stopped being detected");
+    recognition.start();
+};
+
+clearBtn.addEventListener('click',()=>{
+  diagnostic.textContent = "";
+})
+
+
+</script>
+</body>
+</html>

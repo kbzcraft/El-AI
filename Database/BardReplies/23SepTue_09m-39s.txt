@@ -1,0 +1,16 @@
+
+Q: who is the father of computer science?
+A: Alan Turing is widely considered the father of modern computer science. He was a British mathematician and computer scientist who made fundamental contributions to theoretical computer science, artificial intelligence, and mathematics. His work on the Turing machine, a theoretical model of computation, is considered to be the foundation of theoretical computer science. He also made significant contributions to the development of artificial intelligence, and his Turing test is still used today as a measure of a machine's intelligence.
+
+Charles Babbage is sometimes called the "father of computing" for his work on the Analytical Engine, a mechanical computer that was never built but whose design is considered to be the first computer. However, Babbage's work was more theoretical than practical, and it was Turing who laid the foundations for the development of modern computers.
+
+So, while Charles Babbage may be the father of computing, Alan Turing is the father of modern computer science.
+
+Here are some other notable figures who made significant contributions to the development of computer science:
+
+* John von Neumann: A Hungarian-American mathematician and physicist who made significant contributions to many fields, including computer science. He is known for his work on the architecture of computers, and his von Neumann architecture is still used in most modern computers.
+* Konrad Zuse: A German engineer and computer scientist who is credited with building the first working computer, the Z1, in 1936.
+* Grace Hopper: An American computer scientist and United States Navy rear admiral who is known for her work on the development of the first compiler for a computer programming language.
+* John McCarthy: An American computer scientist who is credited with coining the term "artificial intelligence" in 1955. He also developed the Lisp programming language, which is still used today in artificial intelligence research.
+
+These are just a few of the many people who have made significant contributions to the development of computer science. It is a rapidly evolving field, and new contributions are being made all the time.
